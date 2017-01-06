@@ -77,12 +77,19 @@
             <div class="parallax filter filter-color-black">
                 <div class="container">
                     <div class="content">
-                        <form class="form-signin" method="POST" action="php/login.php">
+                        <form class="form-signin" method="POST" action="php/perusahaan_tambah_proses.php" enctype="multipart/form-data">
                             <!--<img src="img/logo.png" width="90px" style="margin-bottom: 20px;"/>-->
-                            <h7 class="login-text">Login sebagai <b>Perusahaan</b>.</h7>
+                            <h7 class="login-text">Daftar sebagai <b>Perusahaan</b>.</h7>
+                            <input class="form-control" type="text" name="nama" placeholder="Nama Perusahaan" required/>
+                            <input class="form-control" type="text" name="email" placeholder="Email" required/>
                             <input class="form-control" type="text" name="username" placeholder="Username" required/>
                             <input class="form-control" type="password" name="password" placeholder="Password" required/>
-                            <input class="btn btn-primary" type="submit" value="Login" style="padding: 14px 20px; margin-top: 20px;"
+                            <input class="form-control" type="password" name="konfirmasi_password" placeholder="Konfirmasi Password" required/>
+                            <input class="form-control" type="hidden" name="alamat" value="" required/>
+                            <input class="form-control" type="hidden" name ="kota_id" value="1" required/>
+                            <input class="form-control" type="hidden" name="email" value="" required/>
+                            <input class="form-control" type="hidden" name="telepon" value="" required/>
+                            <input class="btn btn-primary" type="submit" value="Daftar" style="padding: 14px 20px; margin-top: 20px;"
                                 required/>
                         </form>
                     </div>
