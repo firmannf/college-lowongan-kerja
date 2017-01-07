@@ -162,12 +162,30 @@
                                                                     ?>
                                                                     <br/><br/>
 
+                                                                    <b>Jobdesc Lowongan</b><br/>
+                                                                    <?php
+                                                                         $strJobdescQuery = "SELECT j.lowongan_jobdesc_id, j.lowongan_jobdesc_isi FROM lowongan_jobdesc j INNER JOIN lowongan l ON j.lowongan_jobdesc_id = l.lowongan_id WHERE l.lowongan_id = $result[lowongan_id]  ORDER BY j.lowongan_jobdesc_id ASC";
+                                                                        
+                                                                        $jobdescQuery = mysqli_query($connection, $strJobdescQuery);
+                                                                        $j = 1;
+                                                                        while($jobdescResult = mysqli_fetch_assoc($jobdescQuery)){
+                                                                            echo $j.". $jobdescResult[lowongan_jobdesc_isi]<br/>";
+                                                                            $j++;
+                                                                        }
+                                                                    ?><br/>
+
                                                                     <b>Syarat Lowongan</b><br/>
                                                                     <?php
-                                                                        echo "$result[lowongan_syarat]";
-                                                                        echo "<br>";
+                                                                         $strSyaratQuery = "SELECT s.lowongan_syarat_id, s.lowongan_syarat FROM lowongan_syarat s INNER JOIN lowongan l ON s.lowongan_id = l.lowongan_id WHERE l.lowongan_id = $result[lowongan_id]  ORDER BY s.lowongan_syarat_id ASC";
+                                                                        
+                                                                        $syaratQuery = mysqli_query($connection, $strSyaratQuery);
+                                                                        $j = 1;
+                                                                        while($syaratResult = mysqli_fetch_assoc($syaratQuery)){
+                                                                            echo $j.". $syaratResult[lowongan_syarat]<br/>";
+                                                                            $j++;
+                                                                        }
                                                                     ?>
-                                                                    <br/><br/>
+                                                                    <br/>
 
                                                                     <b>Deskripsi</b><br/>
                                                                     <?php
@@ -176,7 +194,10 @@
                                                                     <br/><br/>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <input type="submit" class="btn btn-default btn-fill" value="Apply" data-dismiss="modal"/>
+                                                                    <input type="hidden" name="lowongan_id" value="<?php echo $result['lowongan_id'];?>"/>
+                                                                    <input type="hidden" name="calon_pekerja_id" value="<?php echo $_SESSION['calon_pekerja_id'];?>"/>
+                                                                    <input type="hidden" name="status" value="Menunggu"/>
+                                                                    <button type="submit" class="btn btn-info btn-fill">Apply</button>
                                                                     <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
