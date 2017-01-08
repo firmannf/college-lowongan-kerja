@@ -12,7 +12,6 @@
 		if($thereIsAUser == 0){
 			echo "<script language=javascript>alert('Username atau Password Tidak Cocok');</script>";
 			echo "<script language=javascript>document.location.href='../login.php'</script>";
-			mysqli_close($connection);
 		}else{
 			$result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 			$login_id = $result['login_id'];
@@ -25,7 +24,6 @@
 					if($thereIsAnAgen == 0){
 						echo "<script language=javascript>alert('Data Admin tidak Ditemukan');</script>";
 						echo "<script language=javascript>document.location.href='../login.php'</script>";
-						mysqli_close($connection);
 					}else {
 						$_SESSION['login_role'] = $login_role;
 						$result = mysqli_fetch_array($query, MYSQLI_ASSOC);
@@ -34,18 +32,18 @@
 						echo "<script language=javascript>document.location.href='../dashboard.php'</script>";
 					}
 				}else {
-					echo "<script language=javascript>alert('Terjadi Kesalahan!');</script>";
+					echo "<script language=javascript>alert('Terjadi Kesalahan Saat Login');</script>";
 					echo "<script language=javascript>document.location.href='../login.php'</script>";
 				}
 			} else {
-				echo "<script language=javascript>alert('Anda Tidak Terdaftar Sebagai Admin!');</script>";
+				echo "<script language=javascript>alert('Anda Tidak Terdaftar Sebagai Admin');</script>";
 				echo "<script language=javascript>document.location.href='../login.php'</script>";
 			}
-			mysqli_close($connection);
 		}
 	}else {
-		echo "<script language=javascript>alert('Terjadi Kesalahan!');</script>";
+		echo "<script language=javascript>alert('Terjadi Kesalahan');</script>";
 		echo "<script language=javascript>document.location.href='../login.php'</script>";
-		mysqli_close($connection);
 	}
+	
+	mysqli_close($connection);
 ?>

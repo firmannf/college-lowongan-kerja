@@ -12,9 +12,11 @@
 		$query = mysqli_query($connection, $strQuery);
 	}
 
-	if(!isset($_POST['from']))
+	if(!isset($_POST['from'])){
 		echo "<script language=javascript>document.location.href='../lowongan_tambah_jobdesc.php?id=$id'</script>";
-	else
+	}else {
 		echo "<script language=javascript>document.location.href='../lowongan_detail.php?id=$id'</script>";
+	}
+	
 	mysqli_close($connection);
 ?>

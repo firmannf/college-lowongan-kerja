@@ -21,8 +21,8 @@
 				$strQuery = "SELECT * FROM calon_pekerja WHERE login_id = '$login_id'";
 				$query = mysqli_query($connection, $strQuery);
 				if($query) {
-					$thereIsAnAgen = mysqli_num_rows($query);
-					if($thereIsAnAgen == 0){
+					$thereIsAnUser = mysqli_num_rows($query);
+					if($thereIsAnUser == 0){
 						echo "<script language=javascript>alert('Data Calon Pekerja tidak Ditemukan');</script>";
 						echo "<script language=javascript>document.location.href='../login.php'</script>";
 						mysqli_close($connection);
@@ -31,21 +31,22 @@
 						$result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 						$_SESSION['calon_pekerja_id'] = $result['calon_pekerja_id'];
 						$_SESSION['calon_pekerja_nama_lengkap'] = $result['calon_pekerja_nama_lengkap'];
-						echo "<script language=javascript>document.location.href='../pencarian_lowongan.php'</script>";
+						echo "<script language=javascript>document.location.href='../dashboard.php'</script>";
 					}
 				}else {
-					echo "<script language=javascript>alert('Terjadi Kesalahan!');</script>";
+					echo "<script language=javascript>alert('Terjadi Kesalahan');</script>";
 					echo "<script language=javascript>document.location.href='../login.php'</script>";
 				}
 			} else {
-				echo "<script language=javascript>alert('Anda Tidak Terdaftar Sebagai Calon Pekerja!');</script>";
+				echo "<script language=javascript>alert('Anda Tidak Terdaftar Sebagai Calon Pekerja');</script>";
 				echo "<script language=javascript>document.location.href='../login.php'</script>";
 			}
 			mysqli_close($connection);
 		}
 	}else {
-		echo "<script language=javascript>alert('Terjadi Kesalahan!');</script>";
+		echo "<script language=javascript>alert('Terjadi Kesalahan');</script>";
 		echo "<script language=javascript>document.location.href='../login.php'</script>";
-		mysqli_close($connection);
 	}
+	
+	mysqli_close($connection);
 ?>

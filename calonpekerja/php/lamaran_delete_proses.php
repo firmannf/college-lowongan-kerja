@@ -4,11 +4,10 @@
 			
 	$strQuery = "DELETE FROM lamaran WHERE lamaran_id = $id";
 	$query = mysqli_query($connection, $strQuery);
-	if($query){
-		echo "<script language=javascript>document.location.href='../dashboard_lamaran.php'</script>";
-		mysqli_close($connection);
-	}else{
-		echo "<script language=javascript>document.location.href='../dashboard_lamaran.php'</script>";
-		mysqli_close($connection);
+	if(!$query){
+		echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menghapus Data Lamaran');</script>";
 	}
+
+	echo "<script language=javascript>document.location.href='../dashboard_lamaran.php'</script>";
+	mysqli_close($connection);
 ?>

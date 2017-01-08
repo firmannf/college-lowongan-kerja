@@ -61,17 +61,13 @@
 			$query = mysqli_query($connection, $strQuery);
 			if($query){				
 				mysqli_commit($connection);		
-				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-				mysqli_close($connection);
 			}else{
 				mysqli_rollback($connection);
-				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-				mysqli_close($connection);
+				echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menambah Data Calon Pekerja');</script>";	
 			}
 		}else {
 			mysqli_rollback($connection);
-			echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-			mysqli_close($connection);
+			echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menambah Data Login Calon Pekerja');</script>";	
 		}
 	} else {	
 		$target_dir = "../../upload/cv/";
@@ -121,23 +117,21 @@
 				$query = mysqli_query($connection, $strQuery);
 				if($query){		
 					mysqli_commit($connection);				
-					echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-					mysqli_close($connection);
 				}else{
 					mysqli_rollback($connection);		
-					echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-					mysqli_close($connection);
+					echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menambah Data Calon Pekerja');</script>";	
 				}
 			}else {
 				mysqli_rollback($connection);
-				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-				mysqli_close($connection);
+				echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menambah Data Login Calon Pekerja');</script>";	
 			}
 		} else {	
 			mysqli_rollback($connection);
-			echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
-			mysqli_close($connection);
+			echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupload file CV');</script>";	
 		}
 	}
+
 	mysqli_autocommit($connection, TRUE);
+	echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
+	mysqli_close($connection);
 ?>

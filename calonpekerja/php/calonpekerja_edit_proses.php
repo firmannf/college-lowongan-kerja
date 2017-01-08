@@ -19,6 +19,8 @@
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 			
+	mysqli_begin_transaction($connection, MYSQLI_TRANS_START_READ_WRITE);
+	mysqli_autocommit($connection, FALSE);
 	if($_FILES['file_cv']['size'] == 0) {
 		$strQuery = "UPDATE calon_pekerja SET 
 		calon_pekerja_nama_lengkap = '$nama', 
@@ -40,15 +42,20 @@
 			if(!empty($password)){
 				$encPassword = md5($password);
 				$strQuery = "UPDATE login SET login_username = '$username', login_password = '$encPassword' WHERE login_id = $login_id";
-				$query = mysqli_query($connection, $strQuery);
 			}else {
-				$encPassword = md5($password);
 				$strQuery = "UPDATE login SET login_username = '$username' WHERE login_id = $login_id";
-				$query = mysqli_query($connection, $strQuery);
 			}	
-			echo "<script language=javascript>alert('Profil Berhasil Di Edit');</script>";
+			
+			$query = mysqli_query($connection, $strQuery);
+			if($query){
+				mysqli_commit($connection);	
+			}else {
+				mysqli_rollback($connection);
+				echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupdate Data Login Calon Pekerja');</script>";
+			}
 		}else{
-			echo "<script language=javascript>alert('Profil Berhasil Di Edit');</script>";
+			mysqli_rollback($connection);
+			echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupdate Data Calon Pekerja');</script>";
 		}
 	}else {
 		$target_dir = "../../upload/cv/";
@@ -74,22 +81,33 @@
 			calon_pekerja_file_cv = '$cv'  
 			WHERE calon_pekerja_id = $id";
 			$query = mysqli_query($connection, $strQuery);
-			if($query){
+			if($query){				
 				if(!empty($password)){
 					$encPassword = md5($password);
 					$strQuery = "UPDATE login SET login_username = '$username', login_password = '$encPassword' WHERE login_id = $login_id";
-					$query = mysqli_query($connection, $strQuery);
 				}else {
-					$encPassword = md5($password);
 					$strQuery = "UPDATE login SET login_username = '$username' WHERE login_id = $login_id";
-					$query = mysqli_query($connection, $strQuery);
 				}	
-				echo "<script language=javascript>alert('Profil Berhasil Di Edit');</script>";
+				
+				$query = mysqli_query($connection, $strQuery);
+				if($query){
+					echo "<script language=javascript>alert('Profil Berhasil DiUpdate');</script>";
+					mysqli_commit($connection);	
+				}else {
+					mysqli_rollback($connection);
+					echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupdate Data Login Calon Pekerja');</script>";
+				}
 			}else{
-				echo "<script language=javascript>alert('Profil Berhasil Di Edit');</script>";
+				mysqli_rollback($connection);
+				echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupdate Data Calon Pekerja');</script>";	
 			}
 		}else{
-			echo "<script language=javascript>alert('Profil Berhasil Di Edit');</script>";
+			mysqli_rollback($connection);
+			echo "<script language=javascript>alert('Terjadi Kesalahan Saat Mengupload file CV');</script>";
 		}
 	}
+
+	mysqli_autocommit($connection, TRUE);
+	echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
+	mysqli_close($connection);
 ?>

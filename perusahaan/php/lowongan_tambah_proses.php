@@ -14,9 +14,9 @@
 	if($query){
 		$id = mysqli_insert_id($connection);
 		echo "<script language=javascript>document.location.href='../lowongan_tambah_syarat.php?id=$id'</script>";
-		mysqli_close($connection);
 	}else{
 		echo "<script language=javascript>document.location.href='../lowongan_tambah_syarat.php'</script>";
-		mysqli_close($connection);
 	}
+	
+	mysqli_close($connection);
 ?>

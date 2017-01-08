@@ -10,12 +10,10 @@
 			
 	$strQuery = "INSERT INTO lowongan VALUES(null,'$perusahaan_id', '$kategori_id', '$judul', '$deskripsi', '$tgl_buka', '$tgl_tutup')";
 	$query = mysqli_query($connection, $strQuery);
-	if($query){
-		$id = mysqli_insert_id($connection);
-		echo "<script language=javascript>document.location.href='../lowongan_tambah_syarat.php?id=$id'</script>";
-		mysqli_close($connection);
-	}else{
-		echo "<script language=javascript>document.location.href='../lowongan_tambah_syarat.php'</script>";
-		mysqli_close($connection);
+	if(!$query){
+		echo "<script language=javascript>alert('Terjadi Kesalahan Saat Menambah Data Lowongan');</script>";
 	}
+		
+	echo "<script language=javascript>document.location.href='../lowongan_tambah_syarat.php'</script>";
+	mysqli_close($connection);
 ?>
