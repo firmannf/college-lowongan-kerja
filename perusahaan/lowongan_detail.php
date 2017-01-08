@@ -49,15 +49,13 @@
                                         Lowongan
                                     </a>
                                 </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="lowongan_tambah.php">
-                                        <i class="fa fa-plus"></i>Tambah Lowongan
+                                        Tambah Lowongan
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" data-toggle="modal" data-target="#search"><i class="fa fa-search"></i>Cari Lowongan</a>
+                                    <a href="#" data-toggle="modal" data-target="#search">Cari Lowongan</a>
                                     <!-- Modal Search -->
                                     <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog" role="document">
@@ -83,6 +81,8 @@
                                     </div>
                                     <!-- End Modal -->
                                 </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="profil_edit.php">
                                         <p>

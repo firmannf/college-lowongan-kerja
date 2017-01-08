@@ -42,20 +42,18 @@
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left" style="margin-left: 56px;">
-                                <li>
+                                <li class="active">
                                     <a href="lowongan.php">
                                         Lowongan
                                     </a>
                                 </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="lowongan_tambah.php">
-                                        <i class="fa fa-plus"></i>Tambah Lowongan
+                                        Tambah Lowongan
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" data-toggle="modal" data-target="#search"><i class="fa fa-search"></i>Cari Lowongan</a>
+                                    <a href="#" data-toggle="modal" data-target="#search">Cari Lowongan</a>
                                     <!-- Modal Search -->
                                     <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog" role="document">
@@ -81,6 +79,8 @@
                                     </div>
                                     <!-- End Modal -->
                                 </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="profil_edit.php">
                                         <p>
@@ -103,16 +103,18 @@
                         <div class="row">
                             <?php
                                 if(isset($_GET['nama'])){
-                                    $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama,
+                                    $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, ko.kota_id, ko.kota_nama, k.kategori_id, k.kategori_nama,
                                     l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
                                     FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
                                     INNER JOIN kategori k ON l.kategori_id = k.kategori_ID 
+                                    INNER JOIN kota ko ON p.kota_id = ko.kota_id 
                                     WHERE lowongan_judul LIKE '%$_GET[nama]%' AND p.perusahaan_id = '$_SESSION[perusahaan_id]' ORDER BY lowongan_id DESC";
                                 }else {
-                                        $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama,
+                                        $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, ko.kota_id, ko.kota_nama, k.kategori_id, k.kategori_nama,
                                         l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
                                         FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
                                         INNER JOIN kategori k ON l.kategori_id = k.kategori_ID 
+                                        INNER JOIN kota ko ON p.kota_id = ko.kota_id 
                                         WHERE p.perusahaan_id = '$_SESSION[perusahaan_id]' 
                                         ORDER BY lowongan_id DESC";
                                 }
@@ -131,17 +133,21 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <p class="category">
-                                                        <?php echo $result['kategori_nama']?>
-                                                    </p><br/>
-                                                    <p class="category">
                                                         <?php echo $result['lowongan_tgl_buka'] ." s.d. ".$result['lowongan_tgl_tutup']?>
                                                     </p>
+                                                    <p class="category">
+                                                       <p class="category">           
+                                                            <br/>
+                                                            <i class="fa fa-map-marker icon-info"></i><?php echo $result['kota_nama']?> &nbsp;&nbsp;
+                                                            <i class="fa fa-tags icon-info"></i><?php echo $result['kategori_nama']?> <br/>   
+                                                        </p>
+                                                    </p>
                                                 </div>
-                                                <div class="col-md-12" style="text-align: right;">
+                                                <div class="col-md-12" style="text-align: left;">
                                                     <p class="category">                                                        
                                                         <?php
-                                                            echo "<a href=lowongan_edit.php?id=$result[lowongan_id]><i class=\"fa fa-pencil icon-success\"></i></a></td>";
-                                                            echo "<a href=# data-toggle=modal data-target=#delete$i><i class=\"fa fa-trash icon-warning\"></i></a></td>";
+                                                            echo "<a href=lowongan_edit.php?id=$result[lowongan_id]><i class=\"fa fa-pencil icon-success\"></i>Edit</a>&nbsp;&nbsp;&nbsp;";
+                                                            echo "<a href=# data-toggle=modal data-target=#delete$i><i class=\"fa fa-trash icon-warning\"></i>Delete</a>";
                                                         ?>
                                                     </p>
 

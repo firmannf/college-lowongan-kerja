@@ -43,15 +43,20 @@
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left" style="margin-left: 56px;">
                                 <li>
-                                    <a href="dashboard_lamaran.php">
+                                    <a href="dashboard.php">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="lamaran.php">
                                         Lamaran
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="lowongan_cari.php" >Cari Lowongan</a>
+                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="pencarian_lowongan.php" ><i class="fa fa-search"></i>Cari Lowongan</a>
-                                </li>
                                 <li>
                                     <a href="profil_edit.php">
                                         <p>
@@ -79,7 +84,7 @@
                                         <!-- Modal Search -->
                                         <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog" role="document">
-                                                <form method="GET" action="dashboard_lamaran.php">
+                                                <form method="GET" action="lamaran.php">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -102,12 +107,12 @@
                                         <?php
                                             if(isset($_GET['keywords'])){
                                         ?>
-                                            <a href="dashboard_lamaran.php" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-arrow-left"></i></a>
+                                            <a href="lamaran.php" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-arrow-left"></i></a>
                                             <?php
                                             }
                                         ?>
                                                 <h4 class="title">Data Lamaran</h4>
-                                                <p class="category">List dari semua lamaran yang telah di apply</p>
+                                                <p class="category">List dari semua lamaran yang telah di-apply</p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-striped">

@@ -25,6 +25,7 @@
 		}	
 		$query = mysqli_query($connection, $strQuery);
 		if($query){
+			$_SESSION['admin_nama'] = $nama;
 			mysqli_commit($connection);
 		}else {
 			mysqli_rollback($connection);

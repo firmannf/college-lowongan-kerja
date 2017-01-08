@@ -16,48 +16,28 @@
         <!--     Fonts and icons     -->
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,800,900' rel='stylesheet' type='text/css'>
         <link href="../font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-        <style>
-        html {
-            background-color: #F4F4F4;
-        }
-        
-        </style>
     </head>
 
     <body>
         <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" color-on-scroll="200" style="color: #59ABE3;">
             <div class="container">
                 <div class="navbar-header">
-                    <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar bar1"></span>
-                    <span class="icon-bar bar2"></span>
-                    <span class="icon-bar bar3"></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                    <a href="index.php" class="navbar-brand" style="color: #C0C0C0;">
+                    <a href="../index.php" class="navbar-brand" style="color: #FFFFFF;">
                         LOWKER
                     </a>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right navbar-uppercase">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false" style="color: #C0C0C0;">
-                                <i class="fa fa-share-alt"></i> Calon Pekerja
-                            </a>
-                            <ul class="dropdown-menu dropdown-info" aria-labelledby="dLabel">
-                                <li>
-                                    <a href="login.php">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="signup.php">Sign Up</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false" style="color: #C0C0C0;">
-                                <i class="fa fa-share-alt"></i> Perusahaan
+                                aria-expanded="false" style="color: #FFFFFF; border-radius: 10px;">
+                                Perusahaan
                             </a>
                             <ul class="dropdown-menu dropdown-info" aria-labelledby="dLabel">
                                 <li>
@@ -68,16 +48,32 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false" style="color: #FFFFFF; background-color: #00B16A; border-radius: 10px;">
+                                Calon Pekerja
+                            </a>
+                            <ul class="dropdown-menu dropdown-info" aria-labelledby="dLabel">
+                                <li>
+                                    <a href="login.php">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="signup.php">Sign Up</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
         </nav>
-        <div class="section section-header">
+         <div class="section section-header">
             <div class="parallax filter filter-color-black">
-                <div class="container">
-                    <div class="content">
-                        <form class="form-signin" method="POST" action="php/login.php">
+                <div class="image" style="background-image: url('../img/3.jpg')">
+                </div>
+                <div class="container" style="opacity: .95;">
+                    <div style="margin-top: 156px;">
+                        <form class="form-signin" method="POST" action="php/login.php" style="border: none;">
                             <!--<img src="img/logo.png" width="90px" style="margin-bottom: 20px;"/>-->
                             <h7 class="login-text">Login sebagai <b>Calon Pekerja</b>.</h7>
                             <input class="form-control" type="text" name="username" placeholder="Username" required/>

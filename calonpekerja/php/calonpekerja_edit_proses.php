@@ -1,5 +1,6 @@
 <?php
 	require "../../php/connection.php";
+	session_start();
 	$id = $_POST['id'];
 	$nama = $_POST['nama'];
 	$alamat = $_POST['alamat'];
@@ -48,6 +49,8 @@
 			
 			$query = mysqli_query($connection, $strQuery);
 			if($query){
+				$_SESSION['calon_pekerja_nama_lengkap'] = $nama;
+				echo "<script language=javascript>alert('Profil Berhasil Diupdate');</script>";
 				mysqli_commit($connection);	
 			}else {
 				mysqli_rollback($connection);
@@ -91,7 +94,7 @@
 				
 				$query = mysqli_query($connection, $strQuery);
 				if($query){
-					echo "<script language=javascript>alert('Profil Berhasil DiUpdate');</script>";
+					echo "<script language=javascript>alert('Profil Berhasil Diupdate');</script>";
 					mysqli_commit($connection);	
 				}else {
 					mysqli_rollback($connection);
@@ -108,6 +111,6 @@
 	}
 
 	mysqli_autocommit($connection, TRUE);
-	echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
+	echo "<script language=javascript>document.location.href='../profil_edit.php'</script>";
 	mysqli_close($connection);
 ?>

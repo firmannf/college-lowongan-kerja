@@ -1,14 +1,5 @@
 <?php
-    require "../php/connection.php";
-    session_start();
-    if(!isset($_SESSION['login_role'])){
-            echo "<script language=javascript>document.location.href='login.php'</script>";
-    }
-
-    if(isset($_SESSION['login_role'])){
-        if($_SESSION['login_role'] != 'Calon Pekerja')
-            echo "<script language=javascript>document.location.href='login.php'</script>";
-    }
+	require "php/connection.php";
 ?>
     <!doctype html>
     <html lang="en">
@@ -19,10 +10,9 @@
         <title>Lowker</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-        <link href="../css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../css/style.css" rel="stylesheet" />
-        <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/themify-icons.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Muli:300,400,600,800' rel='stylesheet' type='text/css'>
     </head>
 
@@ -33,44 +23,47 @@
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                            <a class="navbar-brand" href="#" style="font-weight: 800;">LOWKER</a>
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar bar1"></span>
+                                <span class="icon-bar bar2"></span>
+                                <span class="icon-bar bar3"></span>
+                            </button>
+                            <a class="navbar-brand" href="index.php" style="font-weight: 800;">LOWKER</a>
                         </div>
                         <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-left" style="margin-left: 56px;">
+
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right navbar-uppercase">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false" style="margin-right: 12px; color: #FFFFFF; background-color: #D24D57; border-radius: 10px;">
+                                Perusahaan
+                            </a>
+                            <ul class="dropdown-menu dropdown-info" aria-labelledby="dLabel">
                                 <li>
-                                    <a href="dashboard.php">
-                                        Dashboard
-                                    </a>
+                                    <a href="perusahaan/login.php">Sign In</a>
                                 </li>
                                 <li>
-                                    <a href="lamaran.php">
-                                        Lamaran
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="lowongan_cari.php">Cari Lowongan</a>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="profil_edit.php">
-                                        <p>
-                                            <i class="fa fa-user-circle" style="font-size: 18px;"></i> Hallo,
-                                            <?php echo $_SESSION['calon_pekerja_nama_lengkap'];?>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../php/logout.php">
-                                        <i class="fa fa-sign-out"></i>
-                                    </a>
+                                    <a href="perusahaan/signup.php">Sign Up</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false" style="color: #FFFFFF; background-color: #00B16A; border-radius: 10px;">
+                                Calon Pekerja
+                            </a>
+                            <ul class="dropdown-menu dropdown-info" aria-labelledby="dLabel">
+                                <li>
+                                    <a href="calonpekerja/login.php">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="calonpekerja/signup.php">Sign Up</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                         </div>
                     </div>
                 </nav>
@@ -186,7 +179,7 @@
                                                                     <input type="hidden" name="lowongan_id" value="<?php echo $result['lowongan_id'];?>"/>
                                                                     <input type="hidden" name="calon_pekerja_id" value="<?php echo $_SESSION['calon_pekerja_id'];?>"/>
                                                                     <input type="hidden" name="status" value="Menunggu"/>
-                                                                    <button type="submit" class="btn btn-info btn-fill">Apply</button>
+                                                                    <button type="submit" class="btn btn-info btn-fill" disabled>Login to Apply</button>
                                                                     <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
@@ -218,9 +211,9 @@
                 </footer>
             </div>
         </div>
-        <script src="../js/jquery.min.js" type="text/javascript"></script>
-        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../js/dashboard.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/dashboard.js" type="text/javascript"></script>
         <!--  Modal  -->
         <script>
             <?php
