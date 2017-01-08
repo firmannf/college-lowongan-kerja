@@ -31,7 +31,7 @@
 						$result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 						$_SESSION['calon_pekerja_id'] = $result['calon_pekerja_id'];
 						$_SESSION['calon_pekerja_nama_lengkap'] = $result['calon_pekerja_nama_lengkap'];
-						echo "<script language=javascript>document.location.href='../dashboard.php'</script>";
+						echo "<script language=javascript>document.location.href='../pencarian_lowongan.php'</script>";
 					}
 				}else {
 					echo "<script language=javascript>alert('Terjadi Kesalahan!');</script>";

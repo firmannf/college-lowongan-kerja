@@ -50,7 +50,7 @@
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="pencarian_lowongan.php"><i class="fa fa-search"></i>Cari Lowongan</a>
+                                    <a href="pencarian_lowongan.php" ><i class="fa fa-search"></i>Cari Lowongan</a>
                                 </li>
                                 <li>
                                     <a href="profil_edit.php">
@@ -72,51 +72,85 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <?php
-                                if(isset($_GET['nama'])){
-                                    $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama, c.kota_nama,
-                                    l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
-                                    FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
-                                    INNER JOIN kategori k ON l.kategori_id = k.kategori_ID 
-                                    INNER JOIN kota c ON p.kota_id = c.kota_id
-                                    WHERE lowongan_judul LIKE '%$_GET[nama]%' OR kota_nama LIKE '%$_GET[kota_id]%' ORDER BY lowongan_id DESC";
-                                }else {
-                                        $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama, c.kota_nama,
-                                        l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
-                                        FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
-                                        INNER JOIN kategori k ON l.kategori_id = k.kategori_ID
-                                        INNER JOIN kota c ON p.kota_id = c.kota_id 
-                                        ORDER BY lowongan_id DESC";
-                                }
-                                $query = mysqli_query($connection, $strQuery);
-                                $i = 0;
-                                while($result = mysqli_fetch_assoc($query)){
-                            ?>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card">
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4 class="title">
-                                                        <?php echo $result['lowongan_judul']?>
-                                                    </h4>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="category">
-                                                        <?php echo $result['kategori_nama']?>
-                                                         | <?php echo $result['kota_nama']?>
-                                                    </p><br/>
-                                                    <p class="category">
-                                                        <?php echo $result['lowongan_tgl_buka'] ." s.d. ".$result['lowongan_tgl_tutup']?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-12" style="text-align: right;">
-                                                    <p class="category">                                                        
-                                                        <?php
-                                                            echo "<br>";
-                                                            echo "<a href=# data-toggle=modal data-target=#detail$i>Lihat Detail<i class=\"fa fa-eye icon-warning\"></i></a></td>";
-                                                        ?>
-                                                    </p>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="header">
+                                    <a href="#" data-toggle="modal" data-target="#search" class="btn btn-info pull-right" style="margin-right: 8px;">Cari Lamaran &nbsp;<i class="fa fa-search"></i></a>
+                                        <!-- Modal Search -->
+                                        <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="GET" action="dashboard_lamaran.php">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Masukkan Kata Kunci</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control border-input" name="keywords" placeholder="Kata Kunci" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-info btn-fill">Search</button>
+                                                            <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
+                                        <?php
+                                            if(isset($_GET['keywords'])){
+                                        ?>
+                                            <a href="dashboard_lamaran.php" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-arrow-left"></i></a>
+                                            <?php
+                                            }
+                                        ?>
+                                                <h4 class="title">Data Lamaran</h4>
+                                                <p class="category">List dari semua lamaran yang telah di apply</p>
+                                    </div>
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <th>Nama Perusahaan</th>
+                                                <th>Judul Lowongan</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                    if(isset($_GET['keywords'])){
+                                                        $strQuery = "SELECT la.lamaran_id, lo.lowongan_id, lo.lowongan_judul, cp.calon_pekerja_id, ko.kota_nama, k.kategori_nama, lo.lowongan_deskripsi, lo.lowongan_judul, p.perusahaan_nama,
+                                                        cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos
+                                                        FROM lamaran la INNER JOIN lowongan lo ON la.lowongan_id = lo.lowongan_id
+                                                        INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id
+                                                        INNER JOIN perusahaan p ON lo.perusahaan_id = p.perusahaan_id
+                                                        INNER JOIN kategori k ON lo.kategori_id = k.kategori_id
+                                                        INNER JOIN kota ko ON p.kota_id = ko.kota_id
+                                                        WHERE lo.lowongan_judul LIKE '%$_GET[keywords]%' OR p.perusahaan_nama LIKE '%$_GET[keywords]%' ORDER BY lamaran_id DESC";
+                                                    }else {
+                                                        $strQuery = "SELECT la.lamaran_id, lo.lowongan_id, lo.lowongan_judul, cp.calon_pekerja_id, ko.kota_nama, k.kategori_nama, lo.lowongan_deskripsi, lo.lowongan_judul, p.perusahaan_nama,
+                                                        cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos
+                                                        FROM lamaran la INNER JOIN lowongan lo ON la.lowongan_id = lo.lowongan_id
+                                                        INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id
+                                                        INNER JOIN perusahaan p ON lo.perusahaan_id = p.perusahaan_id
+                                                        INNER JOIN kategori k ON lo.kategori_id = k.kategori_id
+                                                        INNER JOIN kota ko ON p.kota_id = ko.kota_id
+                                                        WHERE cp.calon_pekerja_id = '$_SESSION[calon_pekerja_id]'
+                                                        ORDER BY lamaran_id DESC";
+                                                    }
+                                                    $query = mysqli_query($connection, $strQuery);
+                                                    $i = 0;
+                                                    while($result = mysqli_fetch_assoc($query)){
+                                                        echo "<tr>";
+                                                        echo "<td>$result[perusahaan_nama]</td>";
+                                                        echo "<td>$result[lowongan_judul]</td>";
+                                                        echo "<td>$result[lamaran_status_lolos]</td>";
+                                                        echo "<td><a href=# data-toggle=modal data-target=#detail$i>Detail</a>";
+                                                        echo "&nbsp;&nbsp;&nbsp;";
+                                                        echo "<a href=# data-toggle=modal data-target=#delete$i>Delete</a></td>";
+                                                        echo "</tr>";
+                                                ?>
 
                                                     <!-- Modal Detail -->
                                                     <div class="modal fade" id="detail<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -178,10 +212,6 @@
                                                                     <br/><br/>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <input type="hidden" name="lowongan_id" value="<?php echo $result['lowongan_id'];?>"/>
-                                                                    <input type="hidden" name="calon_pekerja_id" value="<?php echo $_SESSION['calon_pekerja_id'];?>"/>
-                                                                    <input type="hidden" name="status" value="Menunggu"/>
-                                                                    <button type="submit" class="btn btn-info btn-fill">Apply</button>
                                                                     <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
@@ -189,15 +219,34 @@
                                                         </div>
                                                     </div>
                                                     <!-- End Modal -->
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    <!-- Modal Delete -->
+                                                    <div class="modal fade " id="delete<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog modal-sm" role="document">
+                                                            <form method="POST" action="php/lamaran_delete_proses.php">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel">Apakah Anda Yakin ?</h4>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <input type="hidden" name="id" value="<?php echo " $result[lamaran_id] ";?>" />
+                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+                                                    <?php
+                                                        $i++;
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <?php
-                                    $i++;
-                                }
-                            ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,6 +271,7 @@
             for($j= 0 ; $j <= $i; $j++){
         ?>
             $('#detail<?php echo $j;?>').appendTo("body")
+            $('#delete<?php echo $j;?>').appendTo("body")
             <?php
             }
         ?>
