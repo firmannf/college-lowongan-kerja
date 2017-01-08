@@ -17,6 +17,8 @@
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
+	mysqli_begin_transaction($connection, MYSQLI_TRANS_START_READ_WRITE);
+	mysqli_autocommit($connection, FALSE);
 	if($_FILES['file_cv']['size'] == 0) {
 		$encPassword = md5($password);
 		$strQuery = "INSERT INTO login VALUES(null,'$username', '$encPassword', 'Calon Pekerja')";
@@ -58,13 +60,16 @@
 			)";
 			$query = mysqli_query($connection, $strQuery);
 			if($query){				
+				mysqli_commit($connection);		
 				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 				mysqli_close($connection);
 			}else{
+				mysqli_rollback($connection);
 				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 				mysqli_close($connection);
 			}
 		}else {
+			mysqli_rollback($connection);
 			echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 			mysqli_close($connection);
 		}
@@ -114,20 +119,25 @@
 					'$login_id' 
 				)";
 				$query = mysqli_query($connection, $strQuery);
-				if($query){				
+				if($query){		
+					mysqli_commit($connection);				
 					echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 					mysqli_close($connection);
 				}else{
+					mysqli_rollback($connection);		
 					echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 					mysqli_close($connection);
 				}
 			}else {
+				mysqli_rollback($connection);
 				echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 				mysqli_close($connection);
 			}
 		} else {	
+			mysqli_rollback($connection);
 			echo "<script language=javascript>document.location.href='../calonpekerja.php'</script>";
 			mysqli_close($connection);
 		}
 	}
+	mysqli_autocommit($connection, TRUE);
 ?>
