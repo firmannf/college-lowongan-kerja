@@ -80,7 +80,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
-                                    <a href="#" data-toggle="modal" data-target="#search" class="btn btn-info pull-right" style="margin-right: 8px;">Cari Lamaran &nbsp;<i class="fa fa-search"></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#search" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-search"></i></a>
                                         <!-- Modal Search -->
                                         <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog" role="document">
@@ -132,7 +132,7 @@
                                                         INNER JOIN perusahaan p ON lo.perusahaan_id = p.perusahaan_id
                                                         INNER JOIN kategori k ON lo.kategori_id = k.kategori_id
                                                         INNER JOIN kota ko ON p.kota_id = ko.kota_id
-                                                        WHERE lo.lowongan_judul LIKE '%$_GET[keywords]%' OR p.perusahaan_nama LIKE '%$_GET[keywords]%' ORDER BY lamaran_id DESC";
+                                                        WHERE lo.lowongan_judul LIKE '%$_GET[keywords]%' OR p.perusahaan_nama LIKE '%$_GET[keywords]%' AND cp.calon_pekerja_id = $_SESSION[calon_pekerja_id] ORDER BY lamaran_id DESC";
                                                     }else {
                                                         $strQuery = "SELECT la.lamaran_id, lo.lowongan_id, lo.lowongan_judul, cp.calon_pekerja_id, ko.kota_nama, k.kategori_nama, lo.lowongan_deskripsi, lo.lowongan_judul, p.perusahaan_nama,
                                                         cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos

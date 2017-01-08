@@ -303,7 +303,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[calon_pekerja_id] ";?>" />
                                                                         <input type="hidden" name="login_id" value="<?php echo " $result[login_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>

@@ -219,7 +219,7 @@
                                                                 $strQuery = "SELECT kota_id, kota_nama FROM kota";
                                                                 $query = mysqli_query($connection, $strQuery);
                                                                 while($subresult = mysqli_fetch_assoc($query)){
-                                                                    if($subresult['kota_id'] = $kota_id)
+                                                                    if($subresult['kota_id'] == $kota_id)
                                                                         echo "<option value=$subresult[kota_id] selected>$subresult[kota_nama]</option>";
                                                                     else
                                                                         echo "<option value=$subresult[kota_id]>$subresult[kota_nama]</option>";

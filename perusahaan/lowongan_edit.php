@@ -134,23 +134,6 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Perusahaan</label>
-                                                        <select class="form-control border-input" name="perusahaan_id">
-                                                            <?php
-                                                                $strQuery = "SELECT perusahaan_id, perusahaan_nama FROM perusahaan";
-                                                                $query = mysqli_query($connection, $strQuery);
-                                                                while($result = mysqli_fetch_assoc($query)){
-                                                                    if($result['perusahaan_id'] = $perusahaan_id)
-                                                                        echo "<option value=$result[perusahaan_id] selected>$result[perusahaan_nama]</option>";
-                                                                    else
-                                                                        echo "<option value=$result[perusahaan_id] selected>$result[perusahaan_nama]</option>";
-                                                                }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
                                                         <label>Judul Lowongan</label>
                                                         <input type="text" class="form-control border-input" name="judul" placeholder="Judul Lowongan" value="<?php echo $judul;?>"/>
                                                     </div>
@@ -163,10 +146,10 @@
                                                                 $strQuery = "SELECT kategori_id, kategori_nama FROM kategori";
                                                                 $query = mysqli_query($connection, $strQuery);
                                                                 while($result = mysqli_fetch_assoc($query)){
-                                                                if($result['kategori_id'] = $kategori_id)
+                                                                if($result['kategori_id'] == $kategori_id)
                                                                         echo "<option value=$result[kategori_id] selected>$result[kategori_nama]</option>";
                                                                     else
-                                                                        echo "<option value=$result[kategori_id] selected>$result[kategori_nama]</option>";
+                                                                        echo "<option value=$result[kategori_id]>$result[kategori_nama]</option>";
                                                                 }
                                                             ?>
                                                         </select>

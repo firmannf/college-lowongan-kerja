@@ -190,7 +190,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[kota_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>

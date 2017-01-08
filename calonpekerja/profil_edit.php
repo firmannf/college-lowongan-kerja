@@ -101,11 +101,11 @@
                                         Lamaran
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="lowongan_cari.php">Cari Lowongan</a>
+                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="lowongan_cari.php"><i class="fa fa-search"></i>Cari Lowongan</a>
-                                </li>
                                 <li>
                                     <a href="profil_edit.php">
                                         <p>
@@ -178,7 +178,7 @@
                                                                 $strQuery = "SELECT kota_id, kota_nama FROM kota";
                                                                 $query = mysqli_query($connection, $strQuery);
                                                                 while($subresult = mysqli_fetch_assoc($query)){
-                                                                    if($subresult['kota_id'] = $kota_id)
+                                                                    if($subresult['kota_id'] == $kota_id)
                                                                         echo "<option value=$subresult[kota_id] selected>$subresult[kota_nama]</option>";
                                                                     else
                                                                         echo "<option value=$subresult[kota_id]>$subresult[kota_nama]</option>";

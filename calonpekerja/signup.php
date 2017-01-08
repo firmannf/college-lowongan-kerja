@@ -88,7 +88,6 @@
                             <input class="form-control" type="hidden" name="tanggal_lahir" value="" required/>
                             <input class="form-control" type="hidden" name="tempat_lahir" value="" required/>
                             <input class="form-control" type="hidden" name="status_pernikahan" value="Lajang" required/>
-                            <input class="form-control" type="hidden" name="email" value="" required/>
                             <input class="form-control" type="hidden" name="telepon" value="" required/>
                             <input class="form-control" type="hidden" name="pendidikan_terakhir" value="SD" required/>
                             <input class="form-control" type="hidden" name="tempat_pendidikan_terakhir" value="" required/>

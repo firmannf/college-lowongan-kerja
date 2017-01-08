@@ -33,10 +33,10 @@
                     <div class="logo">
                         <!--<img src="../img/logo.png" width="60px" />-->
                         <a href="#" class="simple-text">
-                        Lowker Admin
-                    </a>
+                            Lowker Admin
+                        </a>
                     </div>
-                    <ul class="nav">                        
+                    <ul class="nav">
                         <li class="active">
                             <a href="dashboard.php">
                                 <i class="fa fa-dashboard" style="font-size: 18px;"></i>
@@ -253,7 +253,22 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card col-md-3" style="margin-left: 14px; background-color: #D24D57;">
+                        <div class="content">
+                            <a href="php/backup.php" style="color: #FFFFFF;">
+                                Backup Database
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card col-md-3" style="margin-left: 14px; background-color: #00B16A;">
+                        <div class="content">
+                            <a href="#" style="color: #FFFFFF;">
+                                Restore Database
+                            </a>
                         </div>
                     </div>
                 </div>

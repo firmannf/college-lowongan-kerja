@@ -156,7 +156,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>
@@ -248,7 +248,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_syarat_id] ";?>" />
                                                                         <input type="hidden" name="lowongan_id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Submit" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Submit" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Cancel</button>
                                                                     </div>
                                                                 </div>
@@ -268,7 +268,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_syarat_id] ";?>" />
                                                                         <input type="hidden" name="lowongan_id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>
@@ -332,7 +332,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_jobdesc_id] ";?>" />
                                                                         <input type="hidden" name="lowongan_id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Submit" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Submit" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Cancel</button>
                                                                     </div>
                                                                 </div>
@@ -352,7 +352,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_jobdesc_id] ";?>" />
                                                                         <input type="hidden" name="lowongan_id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>
@@ -379,6 +379,7 @@
                                             <thead>
                                                 <th>Calon Pekerja</th>
                                                 <th>Pendidikan Terakhir</th>
+                                                <th>Tempat Bekerja Terakhir</th>
                                                 <th>Status</th>
                                                 <th>Actions</th>
                                             </thead>
@@ -402,6 +403,10 @@
                                                         echo "<tr>";
                                                         echo "<td>$result[calon_pekerja_nama_lengkap]</td>";
                                                         echo "<td>$result[calon_pekerja_pendidikan_terakhir],di $result[calon_pekerja_tempat_pendidikan_terakhir]</td>";
+                                                        if(empty($result['calon_pekerja_tempat_bekerja_terakhir'])) $result['calon_pekerja_tempat_bekerja_terakhir'] = "-";
+                                                        if(empty($result['calon_pekerja_pekerjaan_bekerja_terakhir'])) $result['calon_pekerja_pekerjaan_bekerja_terakhir'] = "-";
+                                                        echo "<td>$result[calon_pekerja_tempat_bekerja_terakhir], sebagai $result[calon_pekerja_pekerjaan_bekerja_terakhir]</td>";
+                                                                    
                                                         echo "<td>$result[lamaran_status_lolos]</td>";
                                                         echo "<td><a href=# data-toggle=modal data-target=#detail$m>Detail</a>";
                                                         echo "&nbsp;&nbsp;&nbsp;";
@@ -496,6 +501,7 @@
                                                                     <input type="hidden" name="judul_lowongan" value="<?php echo " $result[lowongan_judul] ";?>" />
                                                                     <input type="hidden" name="alamat" value="<?php echo " $result[calon_pekerja_alamat] ";?>" />
                                                                     <input type="hidden" name="telepon" value="<?php echo " $result[calon_pekerja_telepon] ";?>" />
+                                                                    <input type="hidden" name="email" value="<?php echo " $result[calon_pekerja_email] ";?>" />
                                                                     <input type="hidden" name="nama_pegawai" value="<?php echo " $result[calon_pekerja_nama_lengkap] ";?>" />
                                                                     <input type="hidden" name="tgl_lahir" value="<?php echo " $result[calon_pekerja_tanggal_lahir] ";?>" />
                                                                     <input type="hidden" name="tmpt_lahir" value="<?php echo " $result[calon_pekerja_tempat_lahir] ";?>" />
@@ -506,7 +512,9 @@
                                                                     <input type="hidden" name="jk" value="<?php echo " $result[calon_pekerja_jenis_kelamin] ";?>" />
                                                                     <input type="hidden" name="nama_perusahaan" value="<?php echo " $result[perusahaan_nama] ";?>" />
                                                                     <input type="hidden" name="kota_perusahaan" value="<?php echo " $result[kota_perusahaan] ";?>" />
-                                                                    <input type="submit" value="PDF" class="btn btn-primary btn-fill"/>
+                                                                    <input type="hidden" name="cv" value="<?php echo " $result[calon_pekerja_file_cv] ";?>" />
+                                                                    <input type="hidden" name="kota" value="<?php echo " $result[kota_nama] ";?>" />
+                                                                    <input type="submit" value="PDF" class="btn btn-info btn-fill"/>
                                                                     <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
@@ -537,7 +545,7 @@
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lamaran_id] ";?>" />
                                                                         <input type="hidden" name="lowongan_id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Submit" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Submit" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Cancel</button>
                                                                     </div>
                                                                 </div>

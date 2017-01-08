@@ -2,10 +2,13 @@
 	require "../../php/connection.php";
 	$judul = $_POST['judul_lowongan'];
 	$alamat = $_POST['alamat'];
+	$kota = $_POST['kota'];
 	$telepon = $_POST['telepon'];
 	$nama_pegawai = $_POST['nama_pegawai'];
 	$tgl_lahir = $_POST['tgl_lahir'];
 	$tmpt_lahir = $_POST['tmpt_lahir'];
+	$email = $_POST['email'];
+	$cv = $_POST['cv'];
 	$tmpt_pendidikan_terakhir = $_POST['tmpt_pendidikan_terakhir'];
 	$pendidikan_terakhir = $_POST['pendidikan_terakhir'];
 	$tmpt_bekerja = $_POST['tmpt_bekerja'];
@@ -29,19 +32,29 @@
 		    <td width="250">'.$nama_pegawai.'</td>
 		  </tr>
 		  <tr>
-		    <td width="100">JENIS KELAMIN</td>
-		    <td width="10">:</td>
-		    <td width="250">'.$jk.'</td>
-		  </tr>
-		  <tr>
-		    <td>TGL LAHIR</td>
-		    <td>:</td>
-		    <td>'.$tgl_lahir.', '.$tmpt_lahir.'</td>
-		  </tr>
-		  <tr>
 		    <td>ALAMAT</td>
 		    <td>:</td>
 		    <td>'.$alamat.'</td>
+		  </tr>
+		  <tr>
+		    <td>KOTA</td>
+		    <td>:</td>
+		    <td>'.$kota.'</td>
+		  </tr>
+		  <tr>
+		    <td>JENIS KELAMIN</td>
+		    <td>:</td>
+		    <td>'.$jk.'</td>
+		  </tr>
+		  <tr>
+		    <td>TANGGAL LAHIR</td>
+		    <td>:</td>
+		    <td>'.$tgl_lahir.', '.$tmpt_lahir.'</td>
+		  </tr>
+		   <tr>
+		    <td>EMAIL</td>
+		    <td>:</td>
+		    <td>'.$email.'</td>
 		  </tr>
 		   <tr>
 		    <td>TELEPON</td>
@@ -49,14 +62,19 @@
 		    <td>'.$telepon.'</td>
 		  </tr>
 		  <tr>
-		    <td>Pendidikan Terakhir</td>
+		    <td>PENDIDIKAN TERAKHIR</td>
 		    <td>:</td>
 		    <td>'.$pendidikan_terakhir.', di '.$tmpt_pendidikan_terakhir.'</td>
 		  </tr>
 		  <tr>
-		    <td>Pekerjaan Terakhir</td>
+		    <td>PEKERJAAN TERAKHIR</td>
 		    <td>:</td>
 		    <td>'.$tmpt_bekerja.', sebagai '.$pekerjaan_terakhir.'</td>
+		  </tr>
+		  <tr>
+		    <td>FILE CV</td>
+		    <td>:</td>
+		    <td><a href=\'../../upload/cv/'.str_replace(' ','',$cv).'\'>'.$cv.'</a></td>
 		  </tr>
 		</table>';
 

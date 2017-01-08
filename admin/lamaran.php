@@ -131,12 +131,12 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Masukkan Nama Calon Pekerja</h4>
+                                                            <h4 class="modal-title" id="myModalLabel">Masukkan Judul Lowongan atau Nama Calon Pekerja</h4>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label>Nama Calon Pekerja</label>
-                                                                <input type="text" class="form-control border-input" name="nama" placeholder="Nama Calon Pekerja" />
+                                                                <label>Judul Lowongan atau Nama Calon Pekerja</label>
+                                                                <input type="text" class="form-control border-input" name="nama" placeholder="Judul Lowongan atau Nama Calon Pekerja" />
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -174,7 +174,7 @@
                                                         cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos
                                                         FROM lamaran la INNER JOIN lowongan lo ON la.lowongan_id = lo.lowongan_id
                                                         INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id
-                                                        WHERE cp.calon_pekerja_nama_lengkap LIKE '%$_GET[nama]%' ORDER BY lamaran_id DESC";
+                                                        WHERE cp.calon_pekerja_nama_lengkap LIKE '%$_GET[nama]%' OR lo.lowongan_judul LIKE '%$_GET[nama]%' ORDER BY lamaran_id DESC";
                                                     }else if(isset($_GET['calonpekerja'])){
                                                         $strQuery = "SELECT la.lamaran_id, lo.lowongan_id, lo.lowongan_judul, cp.calon_pekerja_id, 
                                                         cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos
@@ -223,7 +223,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lamaran_id] ";?>" />
-                                                                        <input type="submit" value="Submit" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Submit" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Cancel</button>
                                                                     </div>
                                                                 </div>
@@ -242,7 +242,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lamaran_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>

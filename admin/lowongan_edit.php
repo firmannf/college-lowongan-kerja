@@ -155,10 +155,10 @@
                                                                 $strQuery = "SELECT perusahaan_id, perusahaan_nama FROM perusahaan";
                                                                 $query = mysqli_query($connection, $strQuery);
                                                                 while($result = mysqli_fetch_assoc($query)){
-                                                                    if($result['perusahaan_id'] = $perusahaan_id)
+                                                                    if($result['perusahaan_id'] == $perusahaan_id)
                                                                         echo "<option value=$result[perusahaan_id] selected>$result[perusahaan_nama]</option>";
                                                                     else
-                                                                        echo "<option value=$result[perusahaan_id] selected>$result[perusahaan_nama]</option>";
+                                                                        echo "<option value=$result[perusahaan_id]>$result[perusahaan_nama]</option>";
                                                                 }
                                                             ?>
                                                         </select>
@@ -178,10 +178,10 @@
                                                                 $strQuery = "SELECT kategori_id, kategori_nama FROM kategori";
                                                                 $query = mysqli_query($connection, $strQuery);
                                                                 while($result = mysqli_fetch_assoc($query)){
-                                                                if($result['kategori_id'] = $kategori_id)
+                                                                    if($result['kategori_id'] == $kategori_id)
                                                                         echo "<option value=$result[kategori_id] selected>$result[kategori_nama]</option>";
                                                                     else
-                                                                        echo "<option value=$result[kategori_id] selected>$result[kategori_nama]</option>";
+                                                                        echo "<option value=$result[kategori_id]>$result[kategori_nama]</option>";
                                                                 }
                                                             ?>
                                                         </select>

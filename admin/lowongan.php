@@ -127,12 +127,12 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Masukkan Judul Lowongan</h4>
+                                                            <h4 class="modal-title" id="myModalLabel">Masukkan Judul Lowongan atau Nama Perusahaan</h4>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label>Judul Lowongan</label>
-                                                                <input type="text" class="form-control border-input" name="nama" placeholder="Judul Lowongan" />
+                                                                <label>Judul Lowongan atau Nama Perusahaan</label>
+                                                                <input type="text" class="form-control border-input" name="nama" placeholder="Judul Lowongan atau Nama Perusahaan" />
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -172,7 +172,7 @@
                                                         l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
                                                         FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
                                                         INNER JOIN kategori k ON l.kategori_id = k.kategori_ID 
-                                                        WHERE lowongan_judul LIKE '%$_GET[nama]%' ORDER BY lowongan_id DESC";
+                                                        WHERE l.lowongan_judul LIKE '%$_GET[nama]%' OR p.perusahaan_nama LIKE '%$_GET[nama]%' ORDER BY lowongan_id DESC";
                                                     }else if(isset($_GET['perusahaan'])){
                                                         $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama,
                                                         l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
@@ -214,7 +214,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[lowongan_id] ";?>" />
-                                                                        <input type="submit" value="Yes" class="btn btn-primary btn-fill"/>
+                                                                        <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>

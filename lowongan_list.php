@@ -77,13 +77,15 @@
                                     FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
                                     INNER JOIN kategori k ON l.kategori_id = k.kategori_ID 
                                     INNER JOIN kota c ON p.kota_id = c.kota_id
-                                    WHERE l.lowongan_judul LIKE '%$_GET[nama]%' AND c.kota_id = '$_GET[kota_id]' ORDER BY lowongan_id DESC";
+                                    WHERE l.lowongan_judul LIKE '%$_GET[nama]%' AND c.kota_id = '$_GET[kota_id]' AND l.lowongan_tgl_tutup >= CURDATE()
+                                    ORDER BY lowongan_id DESC";
                                 }else {
                                         $strQuery = "SELECT l.lowongan_id, p.perusahaan_id, p.perusahaan_nama, k.kategori_id, k.kategori_nama, c.kota_nama,
                                         l.lowongan_judul, l.lowongan_deskripsi, l.lowongan_tgl_buka, l.lowongan_tgl_tutup
                                         FROM lowongan l INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
                                         INNER JOIN kategori k ON l.kategori_id = k.kategori_ID
                                         INNER JOIN kota c ON p.kota_id = c.kota_id 
+                                        WHERE l.lowongan_tgl_tutup >= CURDATE()
                                         ORDER BY lowongan_id DESC";
                                 }
                                 $query = mysqli_query($connection, $strQuery);

@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="lowongan_cari.php">sCari Lowongan</a>
+                            <a href="lowongan_cari.php">Cari Lowongan</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

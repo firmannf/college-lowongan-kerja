@@ -83,7 +83,6 @@
                             <input class="form-control" type="password" name="konfirmasi_password" placeholder="Konfirmasi Password" required/>
                             <input class="form-control" type="hidden" name="alamat" value="" required/>
                             <input class="form-control" type="hidden" name ="kota_id" value="1" required/>
-                            <input class="form-control" type="hidden" name="email" value="" required/>
                             <input class="form-control" type="hidden" name="telepon" value="" required/>
                             <input class="btn btn-primary" type="submit" value="Daftar" style="padding: 14px 20px; margin-top: 20px;"
                                 required/>
