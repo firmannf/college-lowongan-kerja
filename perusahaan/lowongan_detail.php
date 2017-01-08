@@ -384,13 +384,17 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $strQuery = "SELECT la.lamaran_id, la.lowongan_id, cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos, cp.calon_pekerja_id, cp.calon_pekerja_alamat, k.kota_nama, cp.calon_pekerja_jenis_kelamin,
+                                                    $strQuery = "SELECT la.lamaran_id, la.lowongan_id, cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos, cp.calon_pekerja_id, cp.calon_pekerja_alamat, cp.calon_pekerja_jenis_kelamin, k.kota_nama, l.lowongan_judul,
                                                         cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
                                                         cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
-                                                        cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir,
-                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id 
-                                                        FROM lamaran la INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id INNER JOIN kota k ON cp.kota_id = k.kota_id
-                                                        WHERE lowongan_id = $id
+                                                        cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir, kp.kota_nama as kota_perusahaan,
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id, p.perusahaan_nama 
+                                                        FROM lamaran la INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id 
+                                                        INNER JOIN kota k ON cp.kota_id = k.kota_id
+                                                        INNER JOIN lowongan l ON la.lowongan_id = l.lowongan_id
+                                                        INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
+                                                        INNER JOIN kota kp ON p.kota_id = kp.kota_id
+                                                        WHERE l.lowongan_id = $id
                                                         ORDER BY lamaran_id DESC";
                                                     $query = mysqli_query($connection, $strQuery);
                                                     $m = 0;
@@ -407,6 +411,7 @@
                                                     <!-- Modal Detail-->
                                                     <div class="modal fade" id="detail<?php echo $m;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog" role="document">
+                                                        <form method="POST" action="php/report.php">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -488,9 +493,24 @@
                                                                     <br/><br/>
                                                                 </div>
                                                                 <div class="modal-footer">
+                                                                    <input type="hidden" name="judul_lowongan" value="<?php echo " $result[lowongan_judul] ";?>" />
+                                                                    <input type="hidden" name="alamat" value="<?php echo " $result[calon_pekerja_alamat] ";?>" />
+                                                                    <input type="hidden" name="telepon" value="<?php echo " $result[calon_pekerja_telepon] ";?>" />
+                                                                    <input type="hidden" name="nama_pegawai" value="<?php echo " $result[calon_pekerja_nama_lengkap] ";?>" />
+                                                                    <input type="hidden" name="tgl_lahir" value="<?php echo " $result[calon_pekerja_tanggal_lahir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_lahir" value="<?php echo " $result[calon_pekerja_tempat_lahir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_pendidikan_terakhir" value="<?php echo " $result[calon_pekerja_tempat_pendidikan_terakhir] ";?>" />
+                                                                    <input type="hidden" name="pendidikan_terakhir" value="<?php echo " $result[calon_pekerja_pendidikan_terakhir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_bekerja" value="<?php echo " $result[calon_pekerja_tempat_bekerja_terakhir] ";?>" />
+                                                                    <input type="hidden" name="pekerjaan_terakhir" value="<?php echo " $result[calon_pekerja_pekerjaan_bekerja_terakhir] ";?>" />
+                                                                    <input type="hidden" name="jk" value="<?php echo " $result[calon_pekerja_jenis_kelamin] ";?>" />
+                                                                    <input type="hidden" name="nama_perusahaan" value="<?php echo " $result[perusahaan_nama] ";?>" />
+                                                                    <input type="hidden" name="kota_perusahaan" value="<?php echo " $result[kota_perusahaan] ";?>" />
+                                                                    <input type="submit" value="PDF" class="btn btn-primary btn-fill"/>
                                                                     <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     <!-- End Modal -->
