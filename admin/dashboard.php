@@ -259,14 +259,14 @@
                     <br/>
                     <div class="card col-md-3" style="margin-left: 14px; background-color: #D24D57;">
                         <div class="content">
-                            <a href="php/backup.php" style="color: #FFFFFF;">
+                            <a href="php/mybackup.php" style="color: #FFFFFF;">
                                 Backup Database
                             </a>
                         </div>
                     </div>
                     <div class="card col-md-3" style="margin-left: 14px; background-color: #00B16A;">
                         <div class="content">
-                            <a href="#" style="color: #FFFFFF;">
+                            <a href="calonpekerja_restore.php" style="color: #FFFFFF;">
                                 Restore Database
                             </a>
                         </div>
