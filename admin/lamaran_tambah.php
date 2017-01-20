@@ -158,8 +158,8 @@
                                                         <label>Status Lolos</label>
                                                         <select class="form-control border-input" name="status">
                                                             <option value="Menunggu">Menunggu</option>
-                                                            <option value="Menunggu">Lolos</option>
-                                                            <option value="Menunggu">Tidak Lolos</option>
+                                                            <option value="Lolos">Lolos</option>
+                                                            <option value="Tidak Lolos">Tidak Lolos</option>
                                                         </select>
                                                     </div>
                                                 </div>

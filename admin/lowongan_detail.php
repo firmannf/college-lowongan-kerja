@@ -121,6 +121,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
+                                        <a href="php/report_semua_pelamar.php?id=<?php echo $_GET['id'];?>" target="_blank" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-print"></i>Print Data Pelamar</a>
                                         <h4 class="title">Detail Lowongan</h4>
                                         <p class="category">Detail lowongan dari lowongan yang dipilih</p>
                                     </div>
@@ -235,7 +236,7 @@
                                                     $strQuery = "SELECT lowongan_syarat_id, lowongan_id, lowongan_syarat FROM lowongan_syarat WHERE lowongan_id = '$id'";
                                                     
                                                     $query = mysqli_query($connection, $strQuery);
-                                                    $i = 0;
+                                                    $q = 0;
                                                     while($result = mysqli_fetch_assoc($query)){
                                                         echo "<tr>";
                                                         echo "<td>$result[lowongan_syarat]</td>";
@@ -246,7 +247,7 @@
                                                         echo "</tr>";
                                                 ?>
                                                     <!--Modal Edit -->
-                                                    <div class="modal fade " id="editsyarat<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal fade " id="editsyarat<?php echo $q;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog" role="document">
                                                             <form method="POST" action="php/lowongan_syarat_edit_proses.php">
                                                                 <div class="modal-content">
@@ -272,7 +273,7 @@
                                                     </div>
                                                     <!-- End Modal -->
                                                      <!--Modal Delete -->
-                                                    <div class="modal fade " id="deletesyarat<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal fade " id="deletesyarat<?php echo $q;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog modal-sm" role="document">
                                                             <form method="POST" action="php/lowongan_syarat_delete_proses.php">
                                                                 <div class="modal-content">
@@ -292,7 +293,7 @@
                                                     </div>
                                                     <!-- End Modal -->
                                                     <?php
-                                                        $i++;
+                                                        $q++;
                                                     }
                                                 ?>
                                             </tbody>
@@ -318,7 +319,7 @@
                                                     $strQuery = "SELECT lowongan_jobdesc_id, lowongan_id, lowongan_jobdesc_isi FROM lowongan_jobdesc WHERE lowongan_id = '$id'";
                                                     
                                                     $query = mysqli_query($connection, $strQuery);
-                                                    $i = 0;
+                                                    $w = 0;
                                                     while($result = mysqli_fetch_assoc($query)){
                                                         echo "<tr>";
                                                         echo "<td>$result[lowongan_jobdesc_isi]</td>";
@@ -330,7 +331,7 @@
                                                 ?>
 
                                                     <!--Modal Edit -->
-                                                    <div class="modal fade " id="editjobdesc<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal fade " id="editjobdesc<?php echo $w;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog" role="document">
                                                             <form method="POST" action="php/lowongan_jobdesc_edit_proses.php">
                                                                 <div class="modal-content">
@@ -356,7 +357,7 @@
                                                     </div>
                                                     <!-- End Modal -->
                                                      <!--Modal Delete -->
-                                                    <div class="modal fade " id="deletejobdesc<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal fade " id="deletejobdesc<?php echo $w;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog modal-sm" role="document">
                                                             <form method="POST" action="php/lowongan_jobdesc_delete_proses.php">
                                                                 <div class="modal-content">
@@ -376,7 +377,168 @@
                                                     </div>
                                                     <!-- End Modal -->
                                                     <?php
-                                                        $i++;
+                                                        $w++;
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Pelamar</h4>
+                                    </div>
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table">
+                                            <thead>
+                                                <th>Calon Pekerja</th>
+                                                <th>Pendidikan Terakhir</th>
+                                                <th>Tempat Bekerja Terakhir</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                    $strQuery = "SELECT la.lamaran_id, la.lowongan_id, cp.calon_pekerja_nama_lengkap, la.lamaran_status_lolos, cp.calon_pekerja_id, cp.calon_pekerja_alamat, cp.calon_pekerja_jenis_kelamin, k.kota_nama, l.lowongan_judul,
+                                                        cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
+                                                        cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
+                                                        cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir, kp.kota_nama as kota_perusahaan,
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, p.perusahaan_nama 
+                                                        FROM lamaran la INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id 
+                                                        INNER JOIN kota k ON cp.kota_id = k.kota_id
+                                                        INNER JOIN lowongan l ON la.lowongan_id = l.lowongan_id
+                                                        INNER JOIN perusahaan p ON l.perusahaan_id = p.perusahaan_id
+                                                        INNER JOIN kota kp ON p.kota_id = kp.kota_id
+                                                        WHERE l.lowongan_id = $id
+                                                        ORDER BY lamaran_id DESC";
+                                                    $query = mysqli_query($connection, $strQuery);
+                                                    $m = 0;
+                                                    while($result = mysqli_fetch_assoc($query)){
+                                                        echo "<tr>";
+                                                        echo "<td>$result[calon_pekerja_nama_lengkap]</td>";
+                                                        echo "<td>$result[calon_pekerja_pendidikan_terakhir],di $result[calon_pekerja_tempat_pendidikan_terakhir]</td>";
+                                                        if(empty($result['calon_pekerja_tempat_bekerja_terakhir'])) $result['calon_pekerja_tempat_bekerja_terakhir'] = "-";
+                                                        if(empty($result['calon_pekerja_pekerjaan_bekerja_terakhir'])) $result['calon_pekerja_pekerjaan_bekerja_terakhir'] = "-";
+                                                        echo "<td>$result[calon_pekerja_tempat_bekerja_terakhir], sebagai $result[calon_pekerja_pekerjaan_bekerja_terakhir]</td>";
+                                                                    
+                                                        echo "<td>$result[lamaran_status_lolos]</td>";
+                                                        echo "<td><a href=# data-toggle=modal data-target=#detail$m>Detail</a>";
+                                                        echo "&nbsp;&nbsp;&nbsp;";
+                                                        echo "</tr>";
+                                                ?>
+                                                    <!-- Modal Detail-->
+                                                    <div class="modal fade" id="detail<?php echo $m;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                        <form method="POST" action="php/report.php">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Detail Calon Pekerja</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <b>ID</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_id]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Nama Lengkap</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_nama_lengkap]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Alamat</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_alamat]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Kota</b><br/>
+                                                                    <?php
+                                                                        echo "$result[kota_nama]";
+                                                                    ?>
+                                                                    <br/><br/>
+                                                                    
+                                                                    <b>Jenis Kelamin</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_jenis_kelamin]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Tempat, Tanggal Lahir</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_tempat_lahir], $result[calon_pekerja_tanggal_lahir]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Status Pernikahan</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_status_pernikahan]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Email</b><br/>
+                                                                    <?php
+                                                                        echo "<a href=mailto:$result[calon_pekerja_email]>$result[calon_pekerja_email]</a>";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Telepon</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_telepon]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Pendidikan Terakhir</b><br/>
+                                                                    <?php
+                                                                        echo "$result[calon_pekerja_pendidikan_terakhir], di $result[calon_pekerja_tempat_pendidikan_terakhir]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>Tempat Bekerja Terakhir</b><br/>
+                                                                    <?php
+                                                                        if(empty($result['calon_pekerja_tempat_bekerja_terakhir'])) $result['calon_pekerja_tempat_bekerja_terakhir'] = "-";
+                                                                        if(empty($result['calon_pekerja_pekerjaan_bekerja_terakhir'])) $result['calon_pekerja_pekerjaan_bekerja_terakhir'] = "-";
+                                                                        echo "$result[calon_pekerja_tempat_bekerja_terakhir], sebagai $result[calon_pekerja_pekerjaan_bekerja_terakhir]";
+                                                                    ?>
+                                                                    <br/><br/>
+
+                                                                    <b>File CV</b><br/>
+                                                                    <?php
+                                                                        echo "<a href=../upload/cv/$result[calon_pekerja_file_cv] target=_blank>$result[calon_pekerja_file_cv]</a>";
+                                                                    ?>
+                                                                    <br/><br/>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="hidden" name="judul_lowongan" value="<?php echo " $result[lowongan_judul] ";?>" />
+                                                                    <input type="hidden" name="alamat" value="<?php echo " $result[calon_pekerja_alamat] ";?>" />
+                                                                    <input type="hidden" name="telepon" value="<?php echo " $result[calon_pekerja_telepon] ";?>" />
+                                                                    <input type="hidden" name="email" value="<?php echo " $result[calon_pekerja_email] ";?>" />
+                                                                    <input type="hidden" name="nama_pegawai" value="<?php echo " $result[calon_pekerja_nama_lengkap] ";?>" />
+                                                                    <input type="hidden" name="tgl_lahir" value="<?php echo " $result[calon_pekerja_tanggal_lahir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_lahir" value="<?php echo " $result[calon_pekerja_tempat_lahir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_pendidikan_terakhir" value="<?php echo " $result[calon_pekerja_tempat_pendidikan_terakhir] ";?>" />
+                                                                    <input type="hidden" name="pendidikan_terakhir" value="<?php echo " $result[calon_pekerja_pendidikan_terakhir] ";?>" />
+                                                                    <input type="hidden" name="tmpt_bekerja" value="<?php echo " $result[calon_pekerja_tempat_bekerja_terakhir] ";?>" />
+                                                                    <input type="hidden" name="pekerjaan_terakhir" value="<?php echo " $result[calon_pekerja_pekerjaan_bekerja_terakhir] ";?>" />
+                                                                    <input type="hidden" name="jk" value="<?php echo " $result[calon_pekerja_jenis_kelamin] ";?>" />
+                                                                    <input type="hidden" name="nama_perusahaan" value="<?php echo " $result[perusahaan_nama] ";?>" />
+                                                                    <input type="hidden" name="kota_perusahaan" value="<?php echo " $result[kota_perusahaan] ";?>" />
+                                                                    <input type="hidden" name="cv" value="<?php echo " $result[calon_pekerja_file_cv] ";?>" />
+                                                                    <input type="hidden" name="kota" value="<?php echo " $result[kota_nama] ";?>" />
+                                                                    <input type="submit" value="PDF" class="btn btn-info btn-fill"/>
+                                                                    <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+                                                <?php
+                                                        $m++;
                                                     }
                                                 ?>
                                             </tbody>
@@ -408,10 +570,29 @@
             for($j= 0 ; $j <= $i; $j++){
         ?>
             $('#delete<?php echo $j;?>').appendTo("body");
+            <?php
+            }
+        ?>
+        <?php
+            for($j= 0 ; $j <= $q; $j++){
+        ?>
             $('#editsyarat<?php echo $j;?>').appendTo("body");
             $('#deletesyarat<?php echo $j;?>').appendTo("body");
+            <?php
+            }
+        ?>
+        <?php
+            for($j= 0 ; $j <= $w; $j++){
+        ?>
             $('#editjobdesc<?php echo $j;?>').appendTo("body");
             $('#deletejobdesc<?php echo $j;?>').appendTo("body");
+            <?php
+            }
+        ?>
+        <?php
+            for($j= 0 ; $j <= $m; $j++){
+        ?>
+            $('#detail<?php echo $j;?>').appendTo("body");
             <?php
             }
         ?>

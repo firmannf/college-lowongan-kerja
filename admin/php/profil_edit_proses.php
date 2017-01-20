@@ -26,6 +26,7 @@
 		$query = mysqli_query($connection, $strQuery);
 		if($query){
 			$_SESSION['admin_nama'] = $nama;
+			echo "<script language=javascript>alert('Profil Berhasil Diupdate');</script>";
 			mysqli_commit($connection);
 		}else {
 			mysqli_rollback($connection);

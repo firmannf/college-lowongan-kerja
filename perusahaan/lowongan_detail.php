@@ -106,6 +106,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
+                                        <a href="php/report_semua_pelamar.php?id=<?php echo $_GET['id'];?>" target="_blank" class="btn btn-info pull-right" style="margin-right: 8px;"><i class="fa fa-print"></i>Print Data Pelamar</a>
                                         <h4 class="title">Detail Lowongan</h4>
                                         <p class="category">Detail lowongan dari lowongan yang dipilih</p>
                                     </div>
@@ -389,7 +390,7 @@
                                                         cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
                                                         cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
                                                         cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir, kp.kota_nama as kota_perusahaan,
-                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id, p.perusahaan_nama 
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, p.perusahaan_nama 
                                                         FROM lamaran la INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id 
                                                         INNER JOIN kota k ON cp.kota_id = k.kota_id
                                                         INNER JOIN lowongan l ON la.lowongan_id = l.lowongan_id

@@ -17,7 +17,7 @@
 			$login_id = $result['login_id'];
 			$login_role = $result['login_role'];
 			if($login_role === "Perusahaan") {
-				$strQuery = "SELECT * FROM perusahaan WHERE login_id = '$login_id'";
+				$strQuery = "SELECT * FROM perusahaan WHERE perusahaan_id = '$login_id'";
 				$query = mysqli_query($connection, $strQuery);
 				if($query) {
 					$thereIsAnUser = mysqli_num_rows($query);

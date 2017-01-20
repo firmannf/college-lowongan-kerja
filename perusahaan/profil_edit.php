@@ -22,7 +22,7 @@
     $strQuery = "SELECT p.perusahaan_id, p.perusahaan_nama, p.perusahaan_alamat, k.kota_id, k.kota_nama, 
                     p.perusahaan_email, p.perusahaan_telepon, l.login_id, l.login_username, l.login_password
                     FROM perusahaan p INNER JOIN kota k ON p.kota_id = k.kota_id
-                    INNER JOIN login l ON p.login_id = l.login_id
+                    INNER JOIN login l ON p.perusahaan_id = l.login_id
                     WHERE p.perusahaan_id = '$id'";
     $query = mysqli_query($connection, $strQuery);
     if($query){

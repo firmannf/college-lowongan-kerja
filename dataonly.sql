@@ -61,7 +61,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `lamaran` WRITE;
 /*!40000 ALTER TABLE `lamaran` DISABLE KEYS */;
-INSERT INTO `lamaran` VALUES (8,6,6,'Tidak Lolos'),(13,6,7,'Lolos'),(14,13,7,'Menunggu'),(15,10,7,'Menunggu'),(16,13,10,'Menunggu'),(17,14,6,'Menunggu');
+INSERT INTO `lamaran` VALUES (8,6,19,'Tidak Lolos'),(13,6,19,'Lolos'),(14,13,22,'Menunggu'),(15,10,22,'Menunggu'),(16,13,28,'Menunggu'),(17,14,19,'Menunggu');
 /*!40000 ALTER TABLE `lamaran` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `lowongan` WRITE;
 /*!40000 ALTER TABLE `lowongan` DISABLE KEYS */;
-INSERT INTO `lowongan` VALUES (6,6,4,'Looking for Android Dev','for real we\'re looking for android developer','2017-01-02','2017-01-17'),(10,7,4,'Mencari Programmer .NET','Mencari programmer .net yang sangat berpengalaman','2017-01-08','2017-01-26'),(13,6,4,'Mencari Programmer C++','Mencari programmer C++ yang sangat mantap sekali','2017-01-08','2017-01-31'),(14,6,8,'Di Cari Desainer Berbakat','lorem ipsum','2017-01-09','2017-01-09');
+INSERT INTO `lowongan` VALUES (6,20,4,'Looking for Android Dev','for real we\'re looking for android developer','2017-01-02','2017-01-17'),(10,25,4,'Mencari Programmer .NET','Mencari programmer .net yang sangat berpengalaman','2017-01-08','2017-01-26'),(13,20,4,'Mencari Programmer C++','Mencari programmer C++ yang sangat mantap sekali','2017-01-08','2017-01-31'),(14,20s,8,'Di Cari Desainer Berbakat','lorem ipsum','2017-01-09','2017-01-09');
 /*!40000 ALTER TABLE `lowongan` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -42,8 +42,7 @@
 				calon_pekerja_tempat_pendidikan_terakhir,
 				calon_pekerja_tempat_bekerja_terakhir,
 				calon_pekerja_pekerjaan_bekerja_terakhir,
-				calon_pekerja_file_cv,
-				login_id
+				calon_pekerja_file_cv
 			) VALUES( 
 				'$login_id',
 				'$nama', 
@@ -59,8 +58,7 @@
 				'$tempat_pendidikan_terakhir',  
 				'$tempat_bekerja_terakhir',  
 				'$pekerjaan_bekerja_terakhir',  
-				'',
-				'$login_id' 
+				''
 			)";
 			$query = mysqli_query($connection, $strQuery);
 			if($query){	
