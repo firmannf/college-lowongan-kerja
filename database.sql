@@ -1,9 +1,7 @@
 DROP DATABASE IF EXISTS db_lowker;
 
-/*A. Membuat Database*/
 CREATE DATABASE IF NOT EXISTS db_lowker;
 
-/*A.1 Memilih Database*/
 USE db_lowker;
 
 CREATE TABLE IF NOT EXISTS kota(
@@ -26,9 +24,8 @@ CREATE TABLE IF NOT EXISTS login(
 CREATE TABLE IF NOT EXISTS admin(
     admin_id INT(11) AUTO_INCREMENT PRIMARY KEY,
     admin_nama VARCHAR(51) UNIQUE NOT NULL,
-    login_id INT(11) NOT NULL,
     
-    CONSTRAINT fk_admin_login FOREIGN KEY (login_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_admin_login FOREIGN KEY (admin_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS calon_pekerja(
@@ -47,10 +44,9 @@ CREATE TABLE IF NOT EXISTS calon_pekerja(
     calon_pekerja_tempat_bekerja_terakhir VARCHAR(51),
     calon_pekerja_pekerjaan_bekerja_terakhir VARCHAR(51),
     calon_pekerja_file_cv VARCHAR(101),
-    login_id INT(11) NOT NULL,
     
     CONSTRAINT fk_calon_pekerja_kota FOREIGN KEY (kota_id) REFERENCES kota(kota_id) ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT fk_calon_pekerja_login FOREIGN KEY (login_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_calon_pekerja_login FOREIGN KEY (calon_pekerja_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS perusahaan(
@@ -60,10 +56,9 @@ CREATE TABLE IF NOT EXISTS perusahaan(
     kota_id INT(11),
     perusahaan_email VARCHAR(51) NOT NULL,
     perusahaan_telepon VARCHAR(13),
-    login_id INT(11) NOT NULL,
     
     CONSTRAINT fk_perusahaan_kota FOREIGN KEY (kota_id) REFERENCES kota(kota_id) ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT fk_perusahaan_login FOREIGN KEY (login_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_perusahaan_login FOREIGN KEY (perusahaan_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS lowongan(
@@ -105,3 +100,30 @@ CREATE TABLE IF NOT EXISTS lamaran(
     FOREIGN KEY (lowongan_id) REFERENCES lowongan(lowongan_id) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE KEY (lowongan_id, calon_pekerja_id)
 )ENGINE=INNODB;
+
+DELIMITER //
+	CREATE TRIGGER check_role_admin BEFORE INSERT ON admin FOR EACH ROW
+	BEGIN
+		IF (SELECT login_role FROM login WHERE login_id = NEW.admin_id) != 'Admin' THEN 
+			SIGNAL SQLSTATE '45000';
+		END IF;
+	END;//
+DELIMITER ;
+
+DELIMITER //
+	CREATE TRIGGER check_role_perusahaan BEFORE INSERT ON perusahaan FOR EACH ROW
+	BEGIN
+		IF (SELECT login_role FROM login WHERE login_id = NEW.perusahaan_id) != 'Perusahaan' THEN 
+			SIGNAL SQLSTATE '45000';
+		END IF;
+	END;//
+DELIMITER ;
+
+DELIMITER //
+	CREATE TRIGGER check_role_calon_pekerja BEFORE INSERT ON calon_pekerja FOR EACH ROW
+	BEGIN
+		IF (SELECT login_role FROM login WHERE login_id = NEW.calon_pekerja_id) != 'Calon Pekerja' THEN 
+			SIGNAL SQLSTATE '45000';
+		END IF;
+	END;//
+DELIMITER ;
