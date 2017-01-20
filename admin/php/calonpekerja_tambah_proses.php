@@ -26,6 +26,7 @@
 		if($query){
 			$login_id = mysqli_insert_id($connection);
 			$strQuery = "INSERT INTO calon_pekerja(
+				calon_pekerja_id,
 				calon_pekerja_nama_lengkap,
 				calon_pekerja_alamat,
 				kota_id,
@@ -39,9 +40,9 @@
 				calon_pekerja_tempat_pendidikan_terakhir,
 				calon_pekerja_tempat_bekerja_terakhir,
 				calon_pekerja_pekerjaan_bekerja_terakhir,
-				calon_pekerja_file_cv,
-				login_id
+				calon_pekerja_file_cv
 			) VALUES( 
+				'$login_id',
 				'$nama', 
 				'$alamat', 
 				'$kota_id', 
@@ -55,8 +56,7 @@
 				'$tempat_pendidikan_terakhir',  
 				'$tempat_bekerja_terakhir',  
 				'$pekerjaan_bekerja_terakhir',  
-				'',
-				'$login_id' 
+				''
 			)";
 			$query = mysqli_query($connection, $strQuery);
 			if($query){				
@@ -82,6 +82,7 @@
 			if($query){
 				$login_id = mysqli_insert_id($connection);
 				$strQuery = "INSERT INTO calon_pekerja(
+					calon_pekerja_id,
 					calon_pekerja_nama_lengkap,
 					calon_pekerja_alamat,
 					kota_id,
@@ -98,6 +99,7 @@
 					calon_pekerja_file_cv,
 					login_id
 				) VALUES( 
+					'$login_id',
 					'$nama', 
 					'$alamat', 
 					'$kota_id', 

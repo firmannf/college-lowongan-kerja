@@ -16,7 +16,7 @@
     $username = "";
     $password = "";
     $strQuery = "SELECT a.admin_id, a.admin_nama, l.login_id, l.login_username, l.login_password
-                    FROM admin a INNER JOIN login l ON a.login_id = l.login_id
+                    FROM admin a INNER JOIN login l ON a.admin_id = l.login_id
                     WHERE a.admin_id = '$id'";
     $query = mysqli_query($connection, $strQuery);
     if($query){

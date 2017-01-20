@@ -388,7 +388,7 @@
                                                         cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
                                                         cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
                                                         cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir,
-                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id 
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv
                                                         FROM lamaran la INNER JOIN calon_pekerja cp ON la.calon_pekerja_id = cp.calon_pekerja_id INNER JOIN kota k ON cp.kota_id = k.kota_id
                                                         WHERE lowongan_id = $id
                                                         ORDER BY lamaran_id DESC";

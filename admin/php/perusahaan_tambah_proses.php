@@ -18,13 +18,12 @@
 	if($query){
 		$login_id = mysqli_insert_id($connection);
 		$strQuery = "INSERT INTO perusahaan VALUES( 
-			null,
+			'$login_id',
 			'$nama', 
 			'$alamat', 
 			'$kota_id', 
 			'$email',  
-			'$telepon',
-			'$login_id'
+			'$telepon'
 		)";
 		$query = mysqli_query($connection, $strQuery);
 		if($query){			

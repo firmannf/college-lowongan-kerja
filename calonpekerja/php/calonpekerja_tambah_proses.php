@@ -28,6 +28,7 @@
 		if($query){
 			$login_id = mysqli_insert_id($connection);
 			$strQuery = "INSERT INTO calon_pekerja(
+				calon_pekerja_id,
 				calon_pekerja_nama_lengkap,
 				calon_pekerja_alamat,
 				kota_id,
@@ -44,6 +45,7 @@
 				calon_pekerja_file_cv,
 				login_id
 			) VALUES( 
+				'$login_id',
 				'$nama', 
 				'$alamat', 
 				'$kota_id', 

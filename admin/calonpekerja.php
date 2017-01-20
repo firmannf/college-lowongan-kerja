@@ -172,7 +172,7 @@
                                                         cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
                                                         cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
                                                         cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir,
-                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv
                                                         FROM calon_pekerja cp INNER JOIN kota k ON cp.kota_id = k.kota_id 
                                                         WHERE calon_pekerja_nama_lengkap LIKE '%$_GET[nama]%' ORDER BY calon_pekerja_id DESC";
                                                     }else {
@@ -181,7 +181,7 @@
                                                         cp.calon_pekerja_tempat_lahir, cp.calon_pekerja_tanggal_lahir, cp.calon_pekerja_status_pernikahan,
                                                         cp.calon_pekerja_email, cp.calon_pekerja_telepon, cp.calon_pekerja_pendidikan_terakhir,
                                                         cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir,
-                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, cp.login_id
+                                                        cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv
                                                         FROM calon_pekerja cp INNER JOIN kota k ON cp.kota_id = k.kota_id 
                                                         ORDER BY calon_pekerja_id DESC";
                                                     }
@@ -302,7 +302,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[calon_pekerja_id] ";?>" />
-                                                                        <input type="hidden" name="login_id" value="<?php echo " $result[login_id] ";?>" />
+                                                                        <input type="hidden" name="login_id" value="<?php echo " $result[calon_pekerja_id] ";?>" />
                                                                         <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>

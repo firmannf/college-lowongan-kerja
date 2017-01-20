@@ -168,12 +168,12 @@
                                                 <?php
                                                     if(isset($_GET['nama'])){
                                                         $strQuery = "SELECT p.perusahaan_id, p.perusahaan_nama, p.perusahaan_alamat, k.kota_nama,
-                                                        p.perusahaan_email, p.perusahaan_telepon, p.login_id 
+                                                        p.perusahaan_email, p.perusahaan_telepon
                                                         FROM perusahaan p INNER JOIN kota k ON p.kota_id = k.kota_id 
                                                         WHERE perusahaan_nama LIKE '%$_GET[nama]%' ORDER BY perusahaan_id DESC";
                                                     }else {
                                                         $strQuery = "SELECT p.perusahaan_id, p.perusahaan_nama, p.perusahaan_alamat, k.kota_nama,
-                                                        p.perusahaan_email, p.perusahaan_telepon, p.login_id 
+                                                        p.perusahaan_email, p.perusahaan_telepon 
                                                         FROM perusahaan p INNER JOIN kota k ON p.kota_id = k.kota_id 
                                                         ORDER BY perusahaan_id DESC";
                                                     }
@@ -255,7 +255,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <input type="hidden" name="id" value="<?php echo " $result[perusahaan_id] ";?>" />
-                                                                        <input type="hidden" name="login_id" value="<?php echo " $result[login_id] ";?>" />
+                                                                        <input type="hidden" name="login_id" value="<?php echo " $result[perusahaan_id] ";?>" />
                                                                         <input type="submit" value="Yes" class="btn btn-info btn-fill"/>
                                                                         <button type="button" class="btn btn-default btn-fill" data-dismiss="modal">No</button>
                                                                     </div>

@@ -35,7 +35,7 @@
                     cp.calon_pekerja_tempat_pendidikan_terakhir, cp.calon_pekerja_tempat_bekerja_terakhir,
                     cp.calon_pekerja_pekerjaan_bekerja_terakhir, cp.calon_pekerja_file_cv, l.login_id, l.login_username, l.login_password
                     FROM calon_pekerja cp INNER JOIN kota k ON cp.kota_id = k.kota_id
-                    INNER JOIN login l ON cp.login_id = l.login_id
+                    INNER JOIN login l ON cp.calon_pekerja_id = l.login_id
                     WHERE cp.calon_pekerja_id = '$id'";
     $query = mysqli_query($connection, $strQuery);
     if($query){
