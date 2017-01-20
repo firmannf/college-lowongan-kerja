@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS login(
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS admin(
-    admin_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    admin_id INT(11) PRIMARY KEY,
     admin_nama VARCHAR(51) UNIQUE NOT NULL,
     
     CONSTRAINT fk_admin_login FOREIGN KEY (admin_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS calon_pekerja(
-    calon_pekerja_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    calon_pekerja_id INT(11) PRIMARY KEY,
     calon_pekerja_nama_lengkap VARCHAR(51) NOT NULL,
     calon_pekerja_alamat VARCHAR(101),
     kota_id INT(11),
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS calon_pekerja(
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS perusahaan(
-    perusahaan_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    perusahaan_id INT(11) PRIMARY KEY,
     perusahaan_nama VARCHAR(51) UNIQUE NOT NULL,
     perusahaan_alamat VARCHAR(101),
     kota_id INT(11),
